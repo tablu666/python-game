@@ -59,7 +59,7 @@ ball.shape('circle')
 ball.dx = 0.2
 ball.dy = 0.2
 
-player_speed = 10
+player_speed = 50
 r1_score = 0
 r2_score = 0
 
@@ -86,22 +86,22 @@ write_score()
 def r1_up():
     y = r1.ycor()
     if y < 300:
-        r1.sety(y + 50)
+        r1.sety(y + player_speed)
 
 def r1_down():
     y = r1.ycor()
     if y > -300:
-        r1.sety(y - 50)
+        r1.sety(y - player_speed)
 
 def r2_up():
     y = r2.ycor()
     if y < 300:
-        r2.sety(y + 50)
+        r2.sety(y + player_speed)
 
 def r2_down():
     y = r2.ycor()
     if y > -300:
-        r2.sety(y - 50)
+        r2.sety(y - player_speed)
 
 
 game.listen()
@@ -110,7 +110,7 @@ game.onkey(r1_down, 'x')
 game.onkey(r2_up, 'Up')
 game.onkey(r2_down, 'Down')
 
-#whether end game
+#whether to end game
 running = True
 def stop_loop():
     global running;
@@ -120,7 +120,7 @@ root = game.getcanvas().winfo_toplevel()
 root.protocol('WM_DELETE_WINDOW', stop_loop)
 
 #main loop
-while True:
+while running:
     game.update()
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
